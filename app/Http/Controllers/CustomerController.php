@@ -23,7 +23,7 @@ class CustomerController extends Controller
             'city' => $customer->city,
             'state' => $customer->state,
             'points' => $customer->points,
-            'Gold Member' => $customer->isGoldMember() 
+            'isgoldmember' => $customer->isGoldMember() 
         ];
     });
 }
@@ -42,7 +42,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-       //
+       $request->validate([
+        'first_name'=>'required',
+        'last_name'=>'required',
+        'birth_date'=>'required',
+        'phone'=>'required',
+        'address'=>'required',
+        'city'=>'required',
+        'state'=>'required',
+        'points'=>'required'
+
+       ]);
+       $customer = Customer::create($fields);
+       return ['customer' => $customer]; 
     }
 
     /**
