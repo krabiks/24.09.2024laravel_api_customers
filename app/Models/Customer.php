@@ -17,5 +17,6 @@ public function isGoldMember(){
     return $this->points > 2000;
 }
 
+
 }
 
