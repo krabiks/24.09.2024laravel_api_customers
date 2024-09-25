@@ -3,17 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Customer $customer)
     {
-        //
+        return $customer->orders;
+        $results = DB::table('orders as o')
+            ->join('order_statuses as os', 'o.status', '=', 'os.name') 
+            ->select(
+                'o.order_id',
+                'o.order_date',
+                'o.status',
+                'os.name as status_name'  
+            )
+            ->get(); 
+
+        \Log::debug();
+        
+        //\Log::debug('Number of orders fetched: ' . count($results));
+    
+        return $results;
     }
+    
+
+
 
     /**
      * Show the form for creating a new resource.

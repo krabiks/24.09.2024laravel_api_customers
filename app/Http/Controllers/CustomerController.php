@@ -33,8 +33,6 @@ class CustomerController extends Controller
 
         return $results;
 
-
-
      return $customers;
       }
  
