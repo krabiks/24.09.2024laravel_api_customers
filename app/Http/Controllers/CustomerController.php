@@ -42,29 +42,41 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create(Request $request)
+{
+    $fields = $request->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'birth_date' => 'required',
+        'phone' => 'required',
+        'address' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'points' => 'required',
+    ]);
+
+    $customer = Customer::create($fields);
+    return ['customer' => $customer];
+}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-       $fields = $request->validate([
-        'first_name'=>'required',
-        'last_name'=>'required',
-        'birth_date'=>'required',
-        'phone'=>'required',
-        'address'=>'required',
-        'city'=>'required',
-        'state'=>'required',
-        'points'=>'required'
-
-       ]);
-       $customer = Customer::create($fields);
-       return ['customer' => $customer]; 
+        $fields = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birth_date' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'points' => 'required',
+        ]);
+    
+        $customer = Customer::create($fields);
+        return ['customer' => $customer];
     }
 
     /**

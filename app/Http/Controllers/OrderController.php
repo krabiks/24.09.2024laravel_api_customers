@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index(Customer $customer)
     {
+        // return "test";
         return $customer->orders;
+
         $results = DB::table('orders as o')
             ->join('order_statuses as os', 'o.status', '=', 'os.name') 
             ->select(
@@ -24,10 +26,11 @@ class OrderController extends Controller
                 'os.name as status_name'  
             )
             ->get(); 
+            //return $customer->orders;
 
-        \Log::debug();
+        //\Log::debug();
         
-        //\Log::debug('Number of orders fetched: ' . count($results));
+       
     
         return $results;
     }
