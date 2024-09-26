@@ -17,15 +17,15 @@ class OrderController extends Controller
         // return "test";
         return $customer->orders;
 
-        $results = DB::table('orders as o')
-            ->join('order_statuses as os', 'o.status', '=', 'os.name') 
-            ->select(
-                'o.order_id',
-                'o.order_date',
-                'o.status',
-                'os.name as status_name'  
-            )
-            ->get(); 
+        // $results = DB::table('orders as o')
+        //     ->join('order_statuses as os', 'o.status', '=', 'os.name') 
+        //     ->select(
+        //         'o.order_id',
+        //         'o.order_date',
+        //         'o.status',
+        //         'os.name as status_name'  
+        //     )
+        //     ->get(); 
             //return $customer->orders;
 
         //\Log::debug();
